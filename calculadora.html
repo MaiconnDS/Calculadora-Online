@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULADORA</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo {
+            background-image: linear-gradient(60deg,black,blue);
+            /*Cor de fundo em degrade*/
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            /*amplia a cor ou papel de parede em 100% da pagina*/
+            border: none;
+        }
+
+        .titulo {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+            font-size: 30px;
+            text-align: left;
+
+        }
+
+        .credito {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+            font-size: 15px;
+           text-align: left;
+         
+
+        }
+        
+    
+        .calculadora {
+            position: absolute;
+            background-color: rgba(0, 0, 0, .8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /*Alinha o objeto exatamente no centro*/
+            border-radius: 15px;
+            /*Arredonda as bordas*/
+            padding: 15px;
+            /* espaçamento entre linhas*/
+        }
+
+        .botao {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(31, 31, 31);
+            color: #fff;
+            font-size: 25px;
+            border: none;
+            cursor: pointer;
+            margin: 3px;
+        }
+
+        .botao:hover {
+            background-color: black;
+        }
+
+        #resultado {
+            background-color: #fff;
+            width: 215px;
+            height: 30px;
+            margin: 3px;
+            font-size: 25px;
+            color: black;
+            text-align: right;
+            padding: 5px;
+
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+    <div class="fundo">
+        <h1 class="titulo">Calculadora Online</h1>
+        <h1 class="credito">Programador - Maicon Silva</h1>
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p> <!--Area do resultado da calculadora-->
+            <table> <!--Criação de tabela, para os botões da calculadora-->
+                <tr> <!--Linha de botões-->
+                    <td><button class="botao" onclick="clean()">C</button></td> <!--criação de celula-->
+                    <td><button class="botao" onclick="back()"><</button></td>
+                    <td><button class="botao" onclick="insert('/')">/</button></td>
+                    <td><button class="botao" onclick="insert('*')">x</button></td>
+                </tr>
+
+                <tr> <!--Linha de botões-->
+                    <td><button class="botao" onclick="insert('7')">7</button></td> <!--criação de celula-->
+                    <td><button class="botao" onclick="insert('8')">8</button></td>
+                    <td><button class="botao" onclick="insert('9')">9</button></td>
+                    <td><button class="botao" onclick="insert('-')">-</button></td>
+                </tr>
+
+                <tr> <!--Linha de botões-->
+                    <td><button class="botao" onclick="insert('4')">4</button></td> <!--criação de celula-->
+                    <td><button class="botao" onclick="insert('5')">5</button></td>
+                    <td><button class="botao" onclick="insert('6')">6</button></td>
+                    <td><button class="botao" onclick="insert('+')">+</button></td>
+                </tr>
+
+                <tr> <!--Linha de botões-->
+                    <td><button class="botao" onclick="insert('1')">1</button></td> <!--criação de celula-->
+                    <td><button class="botao" onclick="insert('2')">2</button></td>
+                    <td><button class="botao" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button class="botao" onclick="calcular()" style="height: 106px;">=</button></td>
+                </tr>
+
+                <tr> <!--Linha de botões-->
+                    <td colspan="2"><button class="botao" onclick="insert('0')" style="width: 106px;">0</button></td>
+                    <!--criação de celula-->
+                    <td><button class="botao" onclick="insert('.')">.</button></td>
+                </tr>
+
+            </table>
+        </div>
+
+
+    </div>
+
+    <script>
+        //Iserindo numeros e caracteres no campo resultado.
+        function insert(num) {
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num;
+        }
+        //botao apagar todos os valores no campo resultado
+        function clean() {
+            document.getElementById('resultado').innerHTML = "";
+        }
+        //botao apagar um elemento de cada vez
+        function back() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length - 1);
+        }
+        function calcular() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            if (resultado) {
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            }
+            else {
+                document.getElementById('resultado').innerHTML = "Nada para calcular"
+            }
+        }
+
+
+    </script>
+
+
+
+</body>
+
+</html>
